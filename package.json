@@ -1,0 +1,41 @@
+{
+  "name": "codex-micro-emulator",
+  "version": "0.1.0",
+  "description": "Desktop control surface for the local Codex Micro bridge",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "pnpm run build:main && pnpm run build:renderer",
+    "build:main": "tsc -p tsconfig.main.json",
+    "build:renderer": "vite build",
+    "check": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.renderer.json --noEmit",
+    "dev": "pnpm run build && electron .",
+    "start": "electron .",
+    "test": "pnpm run build && tsc -p tsconfig.test.json && node --test dist-test/test/*.test.js",
+    "screenshot": "pnpm run build && electron . --screenshot docs/codex-micro-emulator.png",
+    "bridge:mock": "node ../codex-micro-bridge/dist/src/cli.js start --mock"
+  },
+  "engines": {
+    "node": ">=22.4"
+  },
+  "keywords": [
+    "codex",
+    "codex-micro",
+    "electron",
+    "desktop"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hietan/codex-micro-emulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hietan/codex-micro-emulator/issues"
+  },
+  "homepage": "https://github.com/Hietan/codex-micro-emulator#readme",
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "electron": "^37.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0"
+  }
+}
